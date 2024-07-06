@@ -1,0 +1,203 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/* css reset code */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* reset code ends */
+
+body {
+  font-family: "Zeyada", cursive;
+  background-color: rgb(240, 117, 117);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.header > h1 {
+  font-size: 30px;
+  text-align: center;
+  text-decoration: underline 4px blue;
+  padding: 20px;
+}
+.rules-section > h2 {
+  font-weight: 700;
+  padding: 10px;
+}
+.list-of-rules > ol {
+  list-style-type: decimal;
+  text-align: left;
+  font-weight: 500;
+  padding: 7px;
+  font-size: 13px;
+}
+.entire-box-section {
+  display: grid;
+  grid-template-columns: repeat(4, 70px);
+  grid-template-rows: repeat(4, 70px);
+  padding: 20px;
+  justify-content: center;
+}
+.entire-box-section > div {
+  border: solid 1px rgb(242, 247, 242);
+  background: rgb(242, 74, 74);
+  box-sizing: border-box;
+}
+.btn-reset {
+  background-color: rgb(235, 12, 12);
+  color: white;
+  width: 180px;
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px auto;
+  border: solid 1px black;
+  box-shadow: 2px 2px blue;
+}
+.btn-reset:hover {
+  transform: scaleX(1.1);
+  background-color: (235, 12, 12);
+}
+footer {
+  padding: 15px;
+}
+
+@media screen and (min-width: 600px) {
+  .entire-box-section {
+    grid-template-columns: repeat(4, 90px);
+    grid-template-rows: repeat(4, 90px);
+  }
+  .header > h1 {
+    font-size: 50px;
+  }
+  .list-of-rules > ol {
+    font-size: 16px;
+  }
+}
