@@ -70,9 +70,11 @@ const loadGameState = () => {
 
 // Attach the event listener to each cell
 cells.forEach((cell) => {
-  cell.addEventListener("click", () => revealCellAndCheckGameStatus(cell));
+  cell.addEventListener("click", (event) => {
+    event.stopPropagation(); // Prevent event propagation
+    revealCellAndCheckGameStatus(cell);
+  });
 });
-
 // Attach the event listener to the reset button
 btnReset.addEventListener("click", resetFunction);
 
