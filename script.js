@@ -1,7 +1,8 @@
 let countOfRevealedCells = 0;
 let countOfBattleShipCells = 0;
-const revealedCells = new Set();
+let revealedCells = new Set();
 let battleShipCells = new Set();
+let savedRevealedCells = new Set();
 
 const btnReset = document.querySelector("button");
 const cells = document.querySelectorAll(".entire-box-section > div");
@@ -28,13 +29,15 @@ const revealCellAndCheckGameStatus = (cell) => {
     cell.style.backgroundSize = "cover";
   }
   countOfRevealedCells++;
+  // Save game state to local storage
+  saveGameState();
   // Checking game status
   if (countOfBattleShipCells === 5) {
-    alert("Congratulations! You won🤩");
-    resetFunction();
+    setTimeout(() => alert("Congratulations! You won🤩"), 500);
+    setTimeout(resetFunction, 500);
   } else if (countOfRevealedCells === 8) {
-    alert("You Lost...😌");
-    resetFunction();
+    setTimeout(() => alert("You Lost...😌"), 500);
+    setTimeout(resetFunction, 500);
   }
 };
 
@@ -47,6 +50,22 @@ const resetFunction = () => {
   cells.forEach((cell) => {
     cell.style.backgroundImage = "";
   });
+  // Save game state to local storage
+  saveGameState();
+};
+// Function to save game state to local storage
+const saveGameState = () => {
+  if (revealedCells.size > 0) {
+    localStorage.setItem("revealedCells", [...revealedCells].join(","));
+  }
+  localStorage.setItem("battleShipCells", [...battleShipCells].join(","));
+};
+// Function to load game state from local storage
+const loadGameState = () => {
+  savedRevealedCells = new Set(
+    localStorage.getItem("revealedCells").split(",")
+  );
+  battleShipCells = new Set(localStorage.getItem("battleShipCells").split(","));
 };
 
 // Attach the event listener to each cell
@@ -67,5 +86,18 @@ const getBattleShipCells = (count, min, max) => {
   }
   return battleShipCells;
 };
-// Initialize battleship cells
-battleShipCells = getBattleShipCells(5, 1, 16);
+
+// Load game state from local storage
+loadGameState();
+if (savedRevealedCells.size > 0 && battleShipCells.size > 0) {
+  //since we have cell id we have to pass the cell instance to revealCellAndCheckGameStatus function
+  savedRevealedCells.forEach((cellId) => {
+    const cell = document.getElementById(cellId);
+    revealCellAndCheckGameStatus(cell);
+  });
+} else {
+  // Initialize battleship cells
+  battleShipCells = getBattleShipCells(5, 1, 16);
+  // Save initial game state to local storage
+  saveGameState();
+}
