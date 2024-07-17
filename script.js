@@ -46,10 +46,14 @@ const resetFunction = () => {
   countOfRevealedCells = 0;
   countOfBattleShipCells = 0;
   revealedCells.clear();
+  savedRevealedCells.clear();
   battleShipCells = getBattleShipCells(5, 1, 16);
   cells.forEach((cell) => {
     cell.style.backgroundImage = "";
   });
+  // Clear game state from local storage
+  localStorage.removeItem("revealedCells");
+  localStorage.removeItem("battleShipCells");
   // Save game state to local storage
   saveGameState();
 };
